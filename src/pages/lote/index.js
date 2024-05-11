@@ -93,7 +93,7 @@ function contrato(
   };
 }
 
-const rows = [
+const initialRows = [
   createData("Visitas Maria Roseli(Vendas)", "Visitas Maria Roseli", 20),
   createData("Visitas Maria Luci(Vendas)", "Visitas Maria Luci", 70),
   createData("Vendas Padrão", "Vendas Padrão", 120),
@@ -101,6 +101,8 @@ const rows = [
 ];
 
 const Lote = () => {
+  const [rows, setRows] = useState(initialRows);
+  const [selectedRows, setSelectedRows] = useState([]);
   const [linhasSelecionadas, setLinhasSelecionadas] = useState([]);
   const [cobradoresSelecionados, setCobradoresSelecionados] = useState(false);
   const [openModal, setOpenModal] = useState(false);
@@ -129,6 +131,28 @@ const Lote = () => {
       );
     }
   };
+
+  const handleRowClick = (rowName) => {
+    const selectedIndex = selectedRows.indexOf(rowName);
+    let newSelected = [];
+
+    if (selectedIndex === -1) {
+      newSelected = newSelected.concat(selectedRows, rowName);
+    } else if (selectedIndex === 0) {
+      newSelected = newSelected.concat(selectedRows.slice(1));
+    } else if (selectedIndex === selectedRows.length - 1) {
+      newSelected = newSelected.concat(selectedRows.slice(0, -1));
+    } else if (selectedIndex > 0) {
+      newSelected = newSelected.concat(
+        selectedRows.slice(0, selectedIndex),
+        selectedRows.slice(selectedIndex + 1)
+      );
+    }
+
+    setSelectedRows(newSelected);
+  };
+
+  const isSelected = (rowName) => selectedRows.indexOf(rowName) !== -1;
 
   const handleRemoverItem = (item) => {
     const novosItens = itensSelecionados.filter((i) => i !== item);
@@ -217,20 +241,47 @@ const Lote = () => {
                               {rows.map((row, index) => (
                                 <TableRow
                                   key={row.name}
-                                  onClick={() => handleTableRowClick(index)}
-                                  style={{
-                                    cursor: "pointer",
-                                    backgroundColor:
-                                      linhasSelecionadas.includes(index)
-                                        ? "#006b33"
-                                        : "",
+                                  sx={{
+                                    "&:last-child td, &:last-child th": {
+                                      border: 0,
+                                    },
+                                    backgroundColor: isSelected(row.name)
+                                      ? "#006b33"
+                                      : "inherit",
+                                    color: isSelected(row.name)
+                                      ? "#fff"
+                                      : "inherit",
                                   }}
+                                  onClick={() => handleRowClick(row.name)}
                                 >
-                                  <TableCell component="th" scope="row">
+                                  <TableCell
+                                    align="start"
+                                    style={{
+                                      color: isSelected(row.name)
+                                        ? "#fff"
+                                        : "inherit",
+                                    }}
+                                  >
                                     {row.name}
                                   </TableCell>
-                                  <TableCell align="start">{row.mes}</TableCell>
-                                  <TableCell align="center">
+                                  <TableCell
+                                    align="start"
+                                    style={{
+                                      color: isSelected(row.name)
+                                        ? "#fff"
+                                        : "inherit",
+                                    }}
+                                  >
+                                    {row.mes}
+                                  </TableCell>
+                                  <TableCell
+                                    align="center"
+                                    style={{
+                                      color: isSelected(row.name)
+                                        ? "#fff"
+                                        : "inherit",
+                                    }}
+                                  >
                                     {row.valor}
                                   </TableCell>
                                 </TableRow>
@@ -310,6 +361,7 @@ const Lote = () => {
                               title={"CONFIRMAR"}
                               corFundoBotao={"#006b33"}
                               corTextoBotao={"#ffff"}
+                              fontSizeBotao={'10px'}
                               fontWeightBotao={700}
                               funcao={handleConfirmarClick2}
                             />

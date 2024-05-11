@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './boletos.css';
 import HeaderBoletos from '../components/header/index';
 import Carregando from '../components/carregando';
+import Imagem01 from '../assets/boletos.png'
 
 const Boletos = () => {
     const [idioma, setIdioma] = useState(false);
@@ -33,8 +34,9 @@ const Boletos = () => {
                 </div>
             ) : (
                 <><HeaderBoletos idioma={idioma} />
-                    <div className='dashboard-boletos'>
-                        {/* <img src={Contratos}></img> */}
+                    <div className='central-boletos01'>
+                        <img src={Imagem01}></img>
+                        <h1>Seleciono uma opção do menu!</h1>
                     </div>
                 </>
             )}

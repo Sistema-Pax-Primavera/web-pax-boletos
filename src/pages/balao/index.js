@@ -54,6 +54,7 @@ const Balao = () => {
                 <ButtonIconTextoStart
                   title={"BUSCAR"}
                   corFundoBotao={"#006b33"}
+                  fontSizeBotao={'10px'}
                   corTextoBotao={"#ffff"}
                   fontWeightBotao={700}
                 />
@@ -101,6 +102,7 @@ const Balao = () => {
                   title={"FINALIZAR"}
                   corFundoBotao={"#006b33"}
                   corTextoBotao={"#ffff"}
+                  fontSizeBotao={'10px'}
                   fontWeightBotao={700}
                   funcao={handleFinalizar}
                 />

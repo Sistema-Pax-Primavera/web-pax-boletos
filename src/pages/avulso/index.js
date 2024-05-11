@@ -134,6 +134,7 @@ const Avulso = () => {
                 <ButtonIconTextoStart
                   title={"BUSCAR"}
                   corFundoBotao={"#006b33"}
+                  fontSizeBotao={'10px'}
                   corTextoBotao={"#ffff"}
                   fontWeightBotao={700}
                 />
@@ -155,6 +156,7 @@ const Avulso = () => {
               <div className="campos-avulso01-buttao">
                 <ButtonIconTextoStart
                   title={"FINALIZAR"}
+                  fontSizeBotao={'10px'}
                   corFundoBotao={"#006b33"}
                   corTextoBotao={"#ffff"}
                   fontWeightBotao={700}
@@ -278,6 +280,7 @@ const Avulso = () => {
                           <ButtonIconTextoStart
                             icon={<DashboardIcon fontSize={"small"} />}
                             corFundoBotao={"#006b33"}
+                            fontSizeBotao={'10px'}
                             corTextoBotao={"#ffff"}
                             fontWeightBotao={700}
                             funcao={abrirModal}

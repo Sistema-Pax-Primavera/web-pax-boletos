@@ -49,8 +49,8 @@
 .campos-avulso01-buttao {
   width: 20%;
   display: flex;
-  height: -10px;
   align-items: center;
+  margin-top: 15px;
 }
 
 .campos-avulso01-buttao label{
